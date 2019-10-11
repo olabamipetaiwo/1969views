@@ -11,10 +11,14 @@ use Illuminate\Http\Response;
 class HomeController extends Controller
 {
     public function index() {
-        // $articles =" Article::all();";
+        return view('welcome');
+    }
+
+    public function getImage(Request $request) {
+         $articles =" Article::all();";
         // $count = 2;
         // if ($count > 0) {
-        //     return response()->json($articles, 200); 
+            return response()->json($articles, 200); 
         // }else {
         //     return response()->json([
         //         'data' => 'Not Found',
@@ -22,6 +26,20 @@ class HomeController extends Controller
         //         'statusCode' => "404"
         //     ], 404); 
         // }
-        return view('welcome');
     }
+
+    public function getImages($category) {
+        switch ($category)
+        {
+            case "all":
+                $articles =" Article::all();".$category;
+                break;
+            case 2:
+                echo "Number 2";
+                break;
+            default:
+                echo "No number between 1 and 3";
+        }
+        return response()->json($articles, 200); 
+   }
 }

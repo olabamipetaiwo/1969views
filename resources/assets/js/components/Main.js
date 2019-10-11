@@ -1,18 +1,19 @@
-import React, { Component } from 'react';
+import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import Navbar from './layouts/Navbar'
- 
+import Navbar from './layouts/Navbar';
+import { Provider } from 'react-redux';
+import store from '../store'; 
 
 
-class Main extends Component {
-    render() {
-        return (
-            <div>
+const Main = () => {
+    return (
+        <Provider store={store}>
+            <Fragment>
                 <Navbar />
                 <h2>All Products gere</h2>
-            </div>
-        );
-    }
+            </Fragment>
+        </Provider>
+    );
 }
  
 export default Main;
