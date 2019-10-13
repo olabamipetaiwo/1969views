@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Auth;
 
 class RegisterController extends Controller
 {
-    
-
-    use RegistersUsers;
-    protected $redirectTo = '/home';
-
+    // use RegistersUsers;
 
     public function __construct()
     {
@@ -21,26 +18,25 @@ class RegisterController extends Controller
     }
 
     public function getRegister() {
-        return view('admin.pages.home');
+        return view('admin.pages.register');
     }
 
-    
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+    public function register(Request $request) {
+        $this->validate($request, [
+            'name' =>  'required|max:255',
+    		'email' => 'required|unique:users|email|max:255',
+            'password' => 'required|confirmed|max:16'
         ]);
+
+        $user = User::create([
+    		'email'=>$request->input('email'),
+    		'name'=>$request->input('name'),
+    		'password'=>bcrypt($request->input('password')),
+        ]);
+
+        return redirect()
+                ->route('admin.login')
+                ->with('info', 'You are sucessfully registered');
     }
 
-   
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
-    }
 }

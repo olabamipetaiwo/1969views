@@ -1,7 +1,6 @@
 @extends('admin.layouts.default')
 
 @section('content')
-   
     <div class="row"> 
         @include('admin.components.widget') 
     </div>

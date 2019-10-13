@@ -20,7 +20,7 @@ class RedirectIfAuthenticated
 
 //class for preventing authenticaed user from outside
         if (Auth::guard($guard)->check()) {
-            return redirect('/home');
+            return redirect('/admin/home');
         }
 
         return $next($request);

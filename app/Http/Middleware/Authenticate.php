@@ -33,7 +33,8 @@
               return response('Unauthorized!!', 401);
             }
             //class for redirecting user if not Authenticated
-            return redirect()->route('guest.index');
+            // return redirect()->route('guest.index');
+            return redirect()->route('admin.login');
       }
       return $next($request);
     }

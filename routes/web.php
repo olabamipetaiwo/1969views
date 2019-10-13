@@ -12,18 +12,27 @@
 */
 
 Route::get('/','HomeController@index');
-Route::get('/api','HomeController@getImage');
 
 Route::prefix('admin')->group(function () {
-    Route::name('admin.')->group(function () {
-        
+    Route::name('admin.')->group(function () { 
         Route::get('register','Auth\RegisterController@getRegister')->name('register');
-        Route::post('register','Auth\RegisterController@registerTutor')->name('register');
+        Route::post('register','Auth\RegisterController@register')->name('register');
 
-        // Route::get('login','Auth\LoginController@getTutorLoginForm')->name('login');
-        // Route::post('login','Auth\LoginController@loginTutor')->name('login');
+        Route::get('login','Auth\LoginController@getLogin')->name('login');
+        Route::post('login','Auth\LoginController@login')->name('login');
 
+        Route::get('logout','Auth\LoginController@logout')->name('logout');
     });
+});
+
+Route::middleware('auth')->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::name('admin.')->group(function () { 
+            Route::get('home','HomeController@dashBoard')->name('home');
+            Route::get('category','AdminController@getCategory')->name('category');
+        });
+    });
+   
 });
 
 

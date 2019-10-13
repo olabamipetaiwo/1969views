@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Models\User;
-// use App\Http\Resources\Article as ArticleResource;
 use Illuminate\Http\Response;
 
 class HomeController extends Controller
@@ -14,32 +13,36 @@ class HomeController extends Controller
         return view('welcome');
     }
 
-    public function getImage(Request $request) {
-         $articles =" Article::all();";
-        // $count = 2;
-        // if ($count > 0) {
-            return response()->json($articles, 200); 
-        // }else {
-        //     return response()->json([
-        //         'data' => 'Not Found',
-        //         'error' => 'No Article retrireved',
-        //         'statusCode' => "404"
-        //     ], 404); 
-        // }
+    public function dashBoard() {
+        return view('admin.pages.home');
     }
 
-    public function getImages($category) {
-        switch ($category)
-        {
-            case "all":
-                $articles =" Article::all();".$category;
-                break;
-            case 2:
-                echo "Number 2";
-                break;
-            default:
-                echo "No number between 1 and 3";
-        }
-        return response()->json($articles, 200); 
-   }
+//     public function getImage(Request $request) {
+//          $articles =" Article::all();";
+//         // $count = 2;
+//         // if ($count > 0) {
+//             return response()->json($articles, 200); 
+//         // }else {
+//         //     return response()->json([
+//         //         'data' => 'Not Found',
+//         //         'error' => 'No Article retrireved',
+//         //         'statusCode' => "404"
+//         //     ], 404); 
+//         // }
+//     }
+
+//     public function getImages($category) {
+//         switch ($category)
+//         {
+//             case "all":
+//                 $articles =" Article::all();".$category;
+//                 break;
+//             case 2:
+//                 echo "Number 2";
+//                 break;
+//             default:
+//                 echo "No number between 1 and 3";
+//         }
+//         return response()->json($articles, 200); 
+//    }
 }
