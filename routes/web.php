@@ -12,6 +12,7 @@
 */
 
 Route::get('/','HomeController@index');
+Route::get('check/{name}','CategoryController@check');
 
 Route::prefix('admin')->group(function () {
     Route::name('admin.')->group(function () { 
@@ -29,7 +30,11 @@ Route::middleware('auth')->group(function () {
     Route::prefix('admin')->group(function () {
         Route::name('admin.')->group(function () { 
             Route::get('home','HomeController@dashBoard')->name('home');
-            Route::get('category','AdminController@getCategory')->name('category');
+
+            Route::get('category','CategoryController@getCategory')->name('category');
+            Route::post('category','CategoryController@createCategory')->name('createCategory');
+
+            Route::post('categoryCheck','CategoryController@checkCategory')->name('checkCategory');
         });
     });
    

@@ -6,7 +6,5 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function getCategory() {
-        return view('admin.abstract.category');
-    }
+   
 }

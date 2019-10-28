@@ -16,7 +16,8 @@ class CreateLookbookImages extends Migration
         Schema::table('lookbookImages', function (Blueprint $table) {
             $table->increments('id');
             $table->string('path');
-            $table->increments('lookbook_id');
+            $table->unsignedInteger('lookbook_id');
+            $table->foreign('lookbook_id')->references('id')->on('lookbook')->onDelete('cascade');;
             $table->timestamps();
         });
     }
